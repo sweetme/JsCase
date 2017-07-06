@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple calendar</title>
+</head>
+<style>
+    body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+    table{border-collapse:collapse;border-spacing:0;}
+    fieldset,img{border:0;}
+    li{list-style:none;}
+    input[type=radio]{cursor: pointer}
+    input[type=checkbox]{cursor: pointer}
+    *{box-sizing: border-box;}
+    a{  text-decoration:none;
+    }
+</style>
+<style>
+    .date-wrap{
+        width: 200px;
+        height: auto;
+        background: #999;
+        margin-right: auto;
+        margin-left: auto;
+        padding: 10px 0;
+    }
+    .date,.date-active{
+        padding: 10px;
+    }
+    .date:after{
+        content: "";
+        clear: both;
+        display: block;
+    }
+    ul li{
+        float: left;
+    }
+    li{
+        width: 50px;
+        height: 50px;
+        color: white;
+        background: #424242;
+        margin: 5px;
+        line-height: 20px;
+        text-align: center;
+        padding: 5px;
+    }
+    ul li span,.date-active span{
+        font-size: 14px;
+        font-weight: bold;
+    }
+    ul li p,.date-active p{
+        font-size: 12px;
+    }
+    .li-c{
+        color: red;
+        background: #FFF;
+        border: 1px solid black;
+    }
+    .date-active{
+        background: #e3e4e5;
+        width: 170px;
+        margin-left: auto;
+        margin-right: auto;
+        border: 1px solid white;
+        height: 100px;
+    }
+
+</style>
+<body>
+<div class="date-wrap">
+    <div class="date" id="i-date">
+        <ul>
+            <li class="li-c">
+                <span>14</span>
+                <p>一月</p>
+            </li>
+            <li>
+                <span>14</span>
+                <p>二月</p>
+            </li>
+            <li>
+                <span>14</span>
+                <p>三月</p>
+            </li>
+            <li>
+                <span>14</span>
+                <p>四月</p>
+            </li>
+            <li>
+                <span>14</span>
+                <p>五月</p>
+            </li>
+            <li>
+                <span>14</span>
+                <p>六月</p>
+            </li>
+            <li>
+                <span>14</span>
+                <p>七月</p>
+            </li>
+            <li>
+                <span>14</span>
+                <p>八月</p>
+            </li>
+            <li>
+                <span>14</span>
+                <p>九月</p>
+            </li>
+            <li>
+                <span>14</span>
+                <p>十月</p>
+            </li>
+            <li>
+                <span>14</span>
+                <p>十一月</p>
+            </li>
+            <li>
+                <span>14</span>
+                <p>十二月</p>
+            </li>
+        </ul>
+    </div>
+    <div class="date-active">
+        <span>1月情人节</span>
+        <p>日记情人节</p>
+    </div>
+</div>
+</body>
+<script>
+    var c=document.getElementById('i-date');
+    var cBtn=c.getElementsByTagName('li');
+    var c2=document.getElementsByClassName('date-active')[0];
+    var yArr=[
+        '日记情人节',
+        '西方情人节',
+        '白色情人节',
+        '黑色情人节',
+        '黄色与玫瑰情人节',
+        '亲吻情人节',
+        '银色情人节',
+        '绿色情人节',
+        '音乐与相片情人节',
+        '葡萄酒情人节',
+        '橙色与电影情人节',
+        '拥抱情人节'
+    ];
+    for(var i=0;i<cBtn.length;i++){
+        cBtn[i].index=i;
+        cBtn[i].onclick=function(){
+            for(var i=0;i<cBtn.length;i++){
+                cBtn[i].className="";
+            }
+            this.className="li-c";
+            c2.innerHTML='<span>'+(this.index+1)+'月情人节</span><p>'+yArr[this.index]+'</p>';
+        }
+    }
+</script>
+</html>
