@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vertical垂直导航</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: content-box;
+    }
+    a{
+        text-decoration: none;
+        color: #A8A8A8;
+    }
+    li{
+        list-style-type: none;
+    }
+    .vertical-nav{
+        margin: 10px;
+    }
+    .vertical-nav li,.vertical-nav dd{
+        width: 120px;
+        line-height: 40px;
+        background-color: rgba(0, 0, 0, 0.76);
+        padding-right: 20px;
+        text-align: center;
+    }
+    .vertical-nav li a{
+        /*border-left: 4px solid #3D3D3D;*/
+        position: relative;
+    }
+    .vertical-nav li:hover{
+        opacity: .9;
+    }
+    .vertical-nav li a:hover{
+        color: #FFF;
+    }
+    .vertical-nav dd a{
+        padding-left: 15px;
+    }
+    .vertical-nav dd:hover,.active-dd{
+        background-color: grey!important;
+
+    }
+    .active-dd a{
+        color: white!important;
+    }
+
+    .vertical-nav a{
+        display: inline-block;
+        padding-left: 10px;
+        width: 95%;
+    }
+    .vertical-nav span{
+        -webkit-transition: all .4s;
+        -moz-transition: all .4s;
+        -ms-transition: all .4s;
+        -o-transition: all .4s;
+        transition: all .4s;
+        -webkit-transform: rotate(-90deg) scale(1,2);
+        -moz-transform: rotate(-90deg) scale(1,2);
+        -ms-transform: rotate(-90deg) scale(1,2);
+        -o-transform: rotate(-90deg) scale(1,2);
+        transform: rotate(-90deg) scale(1,2);
+        display: inline-block;
+        font-weight: 100;
+        font-size: 20px;
+        float: right;
+        color: #A8A8A8;
+    }
+    .active{
+        -webkit-transition: all .4s;
+        -moz-transition: all .4s;
+        -ms-transition: all .4s;
+        -o-transition: all .4s;
+        transition: all .4s;
+        -webkit-transform: rotate(90deg) scale(1,2)!important;
+        -moz-transform: rotate(90deg) scale(1,2)!important;
+        -ms-transform: rotate(90deg) scale(1,2)!important;
+        -o-transform: rotate(90deg) scale(1,2)!important;
+        transform: rotate(90deg) scale(1,2)!important;
+    }
+    .bar{
+        position: absolute;
+        left: 0;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        transform: translateY(-50%);;
+        width: 4px;
+        height: 0;
+        background-color: red;
+    }
+    .vertical-nav li a:hover .bar,.vertical-nav li:hover .bar{
+        height: 100%;
+        -webkit-transition: all .4s;
+        -moz-transition: all .4s;
+        -ms-transition: all .4s;
+        -o-transition: all .4s;
+        transition: all .4s;
+    }
+</style>
+<body>
+<ul class="vertical-nav">
+    <li>
+        <a href="javascript:">默认展开
+            <span>&lt;</span>
+            <div class="bar"></div>
+        </a>
+        <dl class="dd" style="display:none">
+            <dd class="active-dd"><a href="javascript:">选项1</a></dd>
+            <dd><a href="javascript:">选项2</a></dd>
+            <dd><a href="javascript:">选项3</a></dd>
+        </dl>
+    </li>
+    <li><a href="javascript:">解决方案
+            <span>&lt;</span>
+            <div class="bar"></div>
+        </a>
+        <dl class="dd" style="display:none">
+            <dd><a href="javascript:">选项1</a></dd>
+            <dd><a href="javascript:">选项2</a></dd>
+            <dd><a href="javascript:">选项3</a></dd>
+        </dl>
+    </li>
+
+    <li><a href="javascript:">产品</a></li>
+    <li><a href="javascript:">大数据</a></li>
+</ul>
+</body>
+<script src="../jquery-2.1.4.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.vertical-nav li a').click(function(){
+                    if($(this).next('dl').is(":hidden")){
+                        $(this).next('dl').show();
+                        $(this).children('span').addClass("active");
+                    }
+                    else{
+                        $(this).next('dl').hide();
+                        $(this).children('span').removeClass("active");
+                    }
+                });
+        $('.vertical-nav li dl dd').click(function(){
+            $(this).siblings().removeClass("active-dd");
+            $(this).parents('li').siblings().children('dl').children('dd').removeClass("active-dd");
+             $(this).addClass("active-dd");
+        })
+    })
+</script>
+<!--<script>-->
+    <!--window.onload=function(){-->
+        <!--var oUl=document.getElementsByClassName('vertical-nav')[0];-->
+        <!--var aLi=oUl.getElementsByTagName('li');-->
+        <!--var oA;-->
+
+        <!--for(i=0;i<aLi.length;i++){-->
+            <!--aLi[i].index=i;-->
+            <!--oA=aLi[i].getElementsByTagName('a')[0];-->
+            <!--oA.onclick=function(){-->
+                <!--if(this.nextSibling.nextSibling.style.display=='none'){-->
+
+                    <!--this.nextSibling.nextSibling.style.display='block';-->
+                    <!--for(i=0;i<this.childNodes.length;i++){-->
+<!--//                        console.log(this.childNodes[i]);-->
+                        <!--if(this.childNodes[i].tagName=="SPAN"){-->
+                            <!--this.childNodes[i].className='active';-->
+                        <!--}-->
+                    <!--}-->
+                <!--}-->
+                <!--else{-->
+                    <!--this.nextSibling.nextSibling.style.display='none';-->
+                    <!--for(i=0;i<this.childNodes.length;i++){-->
+                        <!--if(this.childNodes[i].tagName=="SPAN"){-->
+                            <!--this.childNodes[i].className='';-->
+                        <!--}-->
+                    <!--}-->
+                <!--}-->
+            <!--};-->
+        <!--}-->
+
+        <!--function ClickFn(){-->
+
+        <!--}-->
+    <!--}-->
+<!--</script>-->
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tree树形图</title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_yw4br8zats05dn29.css">
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    li{
+        list-style-type:none;
+    }
+    a{
+        text-decoration: none;
+    }
+    .doc{
+        width: 14px;
+        height: 14px;
+        background-color: black;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .tree-nav{
+        margin: 40px;
+    }
+    .tree-nav a{
+        color: black;
+    }
+    .tree-nav li{
+        position: relative;
+        width: 150px;
+    }
+    .tree-nav li dd{
+        position: relative;
+    }
+    .active{
+        content: '';
+        position: absolute;
+        left: -20px;
+        top: 6px;
+        width: 0;
+        border-left: 5px solid #000;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+    }
+    .tree-nav li ul,.tree-nav li ul dl,.tree-nav li dl{
+        margin-left: 10px;
+        display: none;
+    }
+    .active-tt{
+        color: rgba(0, 0, 255, 0.51) !important;
+    }
+    .tree-nav li a:hover,.active-aa{
+        color: blue!important;
+    }
+
+</style>
+<body>
+<ul class="tree-nav">
+    <li>
+        <div class="active"></div>
+        <i class="iconfont icon-docC"></i>
+        <a href="javascript:">常用文件夹</a>
+        <dl>
+            <dd>
+                <i class="iconfont icon-textO"></i>
+                <a class="tc" href="javascript:">所有未读</a></dd>
+            <dd>
+                <i class="iconfont icon-textO"></i>
+                <a class="tc" href="javascript:">置顶邮件</a></dd>
+            <dd>
+                <i class="iconfont icon-textO"></i>
+                <a class="tc" href="javascript:">标签邮件</a></dd>
+        </dl>
+    </li>
+    <li>
+        <div class="active"></div>
+        <i class="iconfont icon-docC"></i>
+        <a href="javascript:">我的邮箱</a>
+        <dl>
+            <dd>
+                <div class="active"></div>
+                <i class="iconfont icon-docC"></i>
+                <a href="javascript:">QQ邮箱</a>
+
+                    <dl>
+                        <dd>
+                            <div class="active"></div>
+                            <i class="iconfont icon-docC"></i>
+                            <a href="javascript:">收件箱</a>
+                            <dl>
+                                <dd>
+                                    <i class="iconfont icon-textO"></i>
+                                    <a class="tc" href="javascript:">所有未读</a></dd>
+                                <dd>
+                                    <i class="iconfont icon-textO"></i>
+                                    <a class="tc" href="javascript:">置顶邮件</a></dd>
+                                <dd>
+                                    <i class="iconfont icon-textO"></i>
+                                    <a class="tc" href="javascript:">标签邮件</a></dd>
+                            </dl>
+                        </dd>
+                        <dd>
+                            <i class="iconfont icon-textO"></i>
+                            <a class="tc" href="javascript:">已发邮件</a>
+                        </dd>
+                        <dd>
+                            <i class="iconfont icon-textO"></i>
+                            <a class="tc" href="javascript:">垃圾邮件</a>
+                        </dd>
+                    </dl>
+            </dd>
+            <dd>
+                <div class="active"></div>
+                <i class="iconfont icon-docC"></i>
+                <a href="javascript:">阿里云邮箱</a>
+                <dl>
+                    <dd>
+                        <i class="iconfont icon-textO"></i>
+                        <a class="tc" href="javascript:">收件箱</a></dd>
+                    <dd>
+                        <i class="iconfont icon-textO"></i>
+                        <a class="tc" href="javascript:">已发出的邮件</a></dd>
+                    <dd>
+                        <i class="iconfont icon-textO"></i>
+                        <a class="tc" href="javascript:">垃圾邮件</a></dd>
+                </dl>
+            </dd>
+        </dl>
+    </li>
+</ul>
+</body>
+<script src="../jquery-2.1.4.min.js"></script>
+<script>
+    $(function(){
+        $('.tree-nav li a').click(function(){
+//            $(this).addClass('active-aa');
+            if($(this).next('dl').is(":hidden")){
+                $(this).addClass('active-tt');
+                $(this).next('dl').show();
+                $(this).prev('i').attr("class","iconfont icon-docO");
+                if($(this).prev('i').hasClass('iconfont icon-docC')){
+                    $(this).prev('i').attr("class","iconfont icon-docO");
+                }
+            }
+            else{
+                $(this).next('dl').hide();
+                $(this).removeClass('active-tt');
+                if($(this).prev('i').hasClass('iconfont icon-docO')){
+                    $(this).prev('i').attr("class","iconfont icon-docC");
+                }
+//                $(this).children('span').removeClass("active");
+            }
+        });
+        $('.tc').click(function(){
+            $(this).parents('ul').find('.tc').removeClass("active-aa");
+            $(this).addClass("active-aa");
+        });
+    })
+</script>
+</html>
+<!--list-style-type-->
+<!--none不使用项目符号-->
+<!--disc实心圆，默认值-->
+<!--circle空心圆-->
+<!--square实心方块-->
+<!--decimal阿拉伯数字-->
+<!--lower-roman小写罗马数字-->
+<!--upper-roman大写罗马数字-->
+<!--lower-alpha小写英文字母-->
+<!--upper-alpha大写英文字母-->
